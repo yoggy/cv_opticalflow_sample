@@ -2,32 +2,33 @@
 // cv_opticalflow_sample.cpp - OpenCVを使ったオプティカルフローの簡単なサンプル
 //
 // 参考 : 
-//     OpenCV2.4.10/sources/samples/cpp/fback.cpp
-//     OpenCV2.4.10/sources/samples/cpp/simpleflow_demo.cpp
-//     OpenCV2.4.10/sources/samples/cpp/tvl1_optical_flow.cpp
-//     OpenCV2.4.10/sources/samples/gpu/optical_flow.cpp
-//     OpenCV2.4.10/sources/samples/gpu/farneback_optical_flow.cpp
-//     OpenCV2.4.10/sources/samples/gpu/pyrlk_optical_flow.cpp
-//     OpenCV2.4.10/sources/samples/ocl/pyrlk_optical_flow.cpp
-//     OpenCV2.4.10/sources/samples/ocl/tvl1_optical_flow.cpp
+//     OpenCV3.0/sources/samples/cpp/fback.cpp
+//     OpenCV3.0/sources/samples/cpp/simpleflow_demo.cpp
+//     OpenCV3.0/sources/samples/cpp/tvl1_optical_flow.cpp
+//     OpenCV3.0/sources/samples/gpu/optical_flow.cpp
+//     OpenCV3.0/sources/samples/gpu/farneback_optical_flow.cpp
+//     OpenCV3.0/sources/samples/gpu/pyrlk_optical_flow.cpp
+//     OpenCV3.0/sources/samples/ocl/pyrlk_optical_flow.cpp
+//     OpenCV3.0/sources/samples/ocl/tvl1_optical_flow.cpp
 //
-#include <opencv2/imgproc/imgproc.hpp>
+#ifdef _WIN32
+#include <SDKDDKVer.h>
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
+#pragma warning(disable: 4819)
+#ifdef _DEBUG
+#pragma comment(lib, "opencv_world300d.lib")
+#else
+#endif
+#pragma comment(lib, "opencv_world300.lib")
+#endif
+
+#include <sstream>
+
+#include <opencv2/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/superres/optical_flow.hpp>
 
-#ifdef _WIN32
-#ifdef _DEBUG
-#pragma comment(lib, "opencv_core2410d.lib")
-#pragma comment(lib, "opencv_imgproc2410d.lib")
-#pragma comment(lib, "opencv_highgui2410d.lib")
-#pragma comment(lib, "opencv_superres2410d.lib")
-#else
-#pragma comment(lib, "opencv_core2410.lib")
-#pragma comment(lib, "opencv_imgproc2410.lib")
-#pragma comment(lib, "opencv_highgui2410.lib")
-#pragma comment(lib, "opencv_superres2410.lib")
-#endif
-#endif
 
 #define CAPTURE() {                                             \
 	cv::Size size(320, 240);                                    \
